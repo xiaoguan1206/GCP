@@ -1182,17 +1182,16 @@ def insert_with_dml(instance_id, database_id):
     instance = spanner_client.instance(instance_id)
     database = instance.database(database_id)
 
-    def insert_singers(transaction):
+    def insert_employees(transaction):
         row_ct = transaction.execute_update(
-            "INSERT Singers (SingerId, FirstName, LastName) VALUES "
-            "(12, 'Melissa', 'Garcia'), "
-            "(13, 'Russell', 'Morales'), "
-            "(14, 'Jacqueline', 'Long'), "
-            "(15, 'Dylan', 'Shaw')"
+            "INSERT employees (employee_id, name, start_date) VALUES "
+            "(1, 'Steve Jobs', '1976-04-01'), "
+            "(2, 'Bill Gates', '1975-04-04'), "
+            "(3, 'Larry Page', '1998-09-04') "
         )
         print("{} record(s) inserted.".format(row_ct))
 
-    database.run_in_transaction(insert_singers)
+    database.run_in_transaction(insert_employees)
     # [END spanner_dml_getting_started_insert]
 
 
