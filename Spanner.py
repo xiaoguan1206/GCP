@@ -42,8 +42,8 @@ def create_database(instance_id, database_id):
 # instance_id = "your-spanner-instance"
 # database_id = "your-spanner-db-id"
 spanner_client = spanner.Client()
-instance = spanner_client.instance(instance_id)
-database = instance.database(database_id)
+instance = spanner_client.instance("test-instance")
+database = instance.database("test-database")
 
 def insert_singers(transaction):
     row_ct = transaction.execute_update(
