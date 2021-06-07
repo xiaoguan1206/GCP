@@ -27,3 +27,22 @@ def create_database(instance_id, database_id):
     operation.result(120)
 
     print("Created database {} on instance {}".format(database_id, instance_id))
+''' - -- - - - - - - - - - - - - - - - - - - - - - - - - - ----- - - -------------------'''
+    
+# instance_id = "your-spanner-instance"
+# database_id = "your-spanner-db-id"
+spanner_client = spanner.Client()
+instance = spanner_client.instance(instance_id)
+database = instance.database(database_id)
+
+def insert_singers(transaction):
+    row_ct = transaction.execute_update(
+        "INSERT Singers (SingerId, FirstName, LastName) VALUES "
+        "(12, 'Melissa', 'Garcia'), "
+        "(13, 'Russell', 'Morales'), "
+        "(14, 'Jacqueline', 'Long'), "
+        "(15, 'Dylan', 'Shaw')"
+    )
+    print("{} record(s) inserted.".format(row_ct))
+
+database.run_in_transaction(insert_singers) 
