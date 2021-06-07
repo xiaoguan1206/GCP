@@ -37,11 +37,10 @@ database = instance.database(database_id)
 
 def insert_singers(transaction):
     row_ct = transaction.execute_update(
-        "INSERT Singers (SingerId, FirstName, LastName) VALUES "
-        "(12, 'Melissa', 'Garcia'), "
-        "(13, 'Russell', 'Morales'), "
-        "(14, 'Jacqueline', 'Long'), "
-        "(15, 'Dylan', 'Shaw')"
+        "INSERT employees (employee_id, name, start_date) VALUES "
+        "(1, 'Steve Jobs', '1976-04-01'), "
+        "(2, 'Bill Gates', '1975-04-04'), "
+        "(3, 'Larry Page', '1998-09-04')"
     )
     print("{} record(s) inserted.".format(row_ct))
 
