@@ -1,3 +1,13 @@
+import argparse
+import base64
+import datetime
+import decimal
+import logging
+
+from google.cloud import spanner
+from google.cloud.spanner_v1 import param_types
+
+
 def create_database(instance_id, database_id):
     """Creates a database and tables for sample data."""
     spanner_client = spanner.Client()
